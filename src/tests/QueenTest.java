@@ -38,13 +38,6 @@ public class QueenTest {
             if(!(member instanceof QueenChessPiece))
                 team2.remove(member);
         }
-        for(ChessPiece member : team1.getSoldiers()){
-                team2.remove(member);
-        }
-
-        for(ChessPiece member : team2.getSoldiers()){
-            team1.remove(member);
-        }
         //team2.getMembers().forEachOrdered(m -> team1.remove(m));
         //team2.getMembers().forEach(m -> System.out.println("x " + m.getPosition().x + " y " + m.getPosition().y));
         queen.moveTo(p(4,1));

@@ -15,7 +15,7 @@ public class QueenChessPiece extends ChessPiece {
     @Override
     protected Stream<Point> possibleMoves() {
         List<Point> moves = new ArrayList<>();
-        ChessPiece.oneStepMoves.values().forEach(move -> {
+        ChessPiece.singleSteps.values().forEach(move -> {
             Point location = position.getLocation();
             move.accept(location);
             while(ChessBoard.validLocation(location)){

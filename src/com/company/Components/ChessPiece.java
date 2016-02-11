@@ -16,12 +16,12 @@ public abstract class ChessPiece {
     protected Point position;
     protected final Predicate<Point> hasFoe, hasFriend, isEmpty, kingStaysSafe, hasOpponentsKing;
     protected final ChessTeam team;
-    protected static EnumMap<Direction, Consumer<Point>> oneStepMoves = new EnumMap<Direction, Consumer<Point>>(Direction.class);
+    protected static EnumMap<Direction, Consumer<Point>> singleSteps = new EnumMap<Direction, Consumer<Point>>(Direction.class);
     static{
-        oneStepMoves.put(Direction.NORTH, p -> p.translate(0,-1));      oneStepMoves.put(Direction.NORTH_EAST, p -> p.translate(1, -1));
-        oneStepMoves.put(Direction.EAST, p -> p.translate(1, 0));       oneStepMoves.put(Direction.SOUT_EAST, p -> p.translate(1, 1));
-        oneStepMoves.put(Direction.SOUTH, p -> p.translate(0, 1));      oneStepMoves.put(Direction.SOUT_WEST, p -> p.translate(-1,1));
-        oneStepMoves.put(Direction.WEST, p -> p.translate(-1,0));       oneStepMoves.put(Direction.NORTH_WEST, p -> p.translate(-1,-1));
+        singleSteps.put(Direction.NORTH, p -> p.translate(0,-1));      singleSteps.put(Direction.NORTH_EAST, p -> p.translate(1, -1));
+        singleSteps.put(Direction.EAST, p -> p.translate(1, 0));       singleSteps.put(Direction.SOUT_EAST, p -> p.translate(1, 1));
+        singleSteps.put(Direction.SOUTH, p -> p.translate(0, 1));      singleSteps.put(Direction.SOUT_WEST, p -> p.translate(-1,1));
+        singleSteps.put(Direction.WEST, p -> p.translate(-1,0));       singleSteps.put(Direction.NORTH_WEST, p -> p.translate(-1,-1));
     }
 
     public ChessPiece(Point initialPosition, ChessTeam team, ChessBoard board){

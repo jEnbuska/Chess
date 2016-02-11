@@ -13,7 +13,9 @@ import java.util.stream.Stream;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         QueenTest.class,
-        SoldierTest.class})
+        SoldierTest.class,
+        RookTest.class
+})
 public class ChessTestSuite {
 
     public static String stringiFy(Stream<Point> points){
