@@ -30,11 +30,14 @@ public abstract class ChessPiece {
         this.team=team;
         this.position=initialPosition;
         board.set(position, this);
+        hasMoved=false;
+
+        /*Predicates*/
         this.isEmpty = p -> board.isEmpty(p);
-        hasFoe = p -> team.getOpponent().getMembers().anyMatch(foe -> foe.position.equals(p));
-        hasFriend = p -> team.getMembers().anyMatch(friend -> friend.position.equals(p));
-        hasOpponentsKing = p -> team.getOpponent().getKing().position.equals(p);
-        kingStaysSafe = p -> {
+        this.hasFoe = p -> team.getOpponent().getMembers().anyMatch(foe -> foe.position.equals(p));
+        this.hasFriend = p -> team.getMembers().anyMatch(friend -> friend.position.equals(p));
+        this.hasOpponentsKing = p -> team.getOpponent().getKing().position.equals(p);
+        this.kingStaysSafe = p -> {
             boolean check;
             board.clear(position);
             ChessPiece placeHolder = board.get(p);
@@ -48,7 +51,6 @@ public abstract class ChessPiece {
                 placeHolder.setPosition(p);
             return check;
         };
-        hasMoved=false;
     }
 
 
