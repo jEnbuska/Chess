@@ -12,7 +12,6 @@ public class QueenChessPiece extends ChessPiece {
     public QueenChessPiece(Point initialPosition, ChessTeam team, ChessBoard board) {
         super(initialPosition, team, board);
     }
-
     @Override
     protected Stream<Point> possibleMoves() {
         List<Point> moves = new ArrayList<>();

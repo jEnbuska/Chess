@@ -11,7 +11,6 @@ import java.util.stream.Stream;
  * Created by joonaen on 8.2.2016.
  */
 public abstract class ChessPiece {
-
     protected final ChessBoard board;
     protected boolean hasMoved;
     protected Point position;

@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import static java.lang.Math.abs;
-
 /**
  * Created by WinNabuska on 10.2.2016.
  */
@@ -16,7 +14,6 @@ public class SoldierChessPiece extends ChessPiece {
     public SoldierChessPiece(Point initialPosition, ChessTeam team, ChessBoard board) {
         super(initialPosition, team, board);
     }
-
     @Override
     protected Stream<Point> possibleMoves() {
         Point firstStep = position.getLocation();

@@ -2,8 +2,10 @@ package com.company.Components;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -13,7 +15,6 @@ import static java.util.stream.Collectors.toList;
  * Created by WinNabuska on 10.2.2016.
  */
 public class ChessTeam {
-
     private ChessPiece king;
     private ChessPiece queen;
     private List<ChessPiece> rooks;

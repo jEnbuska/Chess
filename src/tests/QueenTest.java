@@ -1,6 +1,5 @@
 package tests;
 
-import com.company.Chess;
 import com.company.Components.*;
 import org.junit.Assert;
 
@@ -21,12 +20,14 @@ public class QueenTest {
 
     @org.junit.Before
     public void setUp() throws Exception {
+
         board = new ChessBoard();
         team1 = new ChessTeam(board, Direction.SOUTH);
         team2 = new ChessTeam(board, Direction.NORTH);
         team1.setOpponent(team2);
         team2.setOpponent(team1);
         queen = team1.getQueen();
+
     }
 
     @org.junit.Test
