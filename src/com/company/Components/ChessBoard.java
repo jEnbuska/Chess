@@ -15,7 +15,7 @@ public class ChessBoard {
     public final static int GRID_SIZE = 8;
 
     public ChessBoard(){
-        grid =  new ChessPiece[22][10];
+        grid =  new ChessPiece[8][8];
     }
     public static final Point [][] coords = new Point[8][8];
     static{
@@ -45,21 +45,27 @@ public class ChessBoard {
         return isEmpty(p.x,p.y);
     }
     public ChessPiece get(int x, int y){
-        return grid[x][y];
+        try {
+            return grid[x][y];
+        }catch (IndexOutOfBoundsException e){
+            return null;
+        }
     }
     public ChessPiece get(Point p){
         return get(p.x,p.y);
     }
-    public void set(int x, int y, ChessPiece piece){try{grid[x][y]=piece; }catch (IndexOutOfBoundsException e){System.err.println("only for testing" + piece.toString() + " not set");}}
+    public void set(int x, int y, ChessPiece piece){
+        try{
+            grid[x][y]=piece;
+        }catch (IndexOutOfBoundsException e){
+            System.err.println("only for testing" + piece.toString() + " not set");
+        }
+    }
     public void set(Point p, ChessPiece piece){set(p.x, p.y, piece); }
-    public void clear(int x, int y){grid[x][y]=null;}
+    public void clear(int x, int y){
+        try{
+            grid[x][y]=null;
+        }catch (IndexOutOfBoundsException e){}
+    }
     public void clear(Point p){clear(p.x,p.y);}
-    /*
-    public void move(ChessPiece piece, int x, int y){
-        Point current = piece.getPosition();
-        grid[current.x][current.y]=Optional.empty();
-        grid[x][y] = Optional.of(piece);
-    }*/
-
-
 }

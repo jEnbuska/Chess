@@ -50,7 +50,7 @@ public class ChessTeam {
         soldiers = IntStream.range(0,8).boxed().map(x ->
                 new SoldierChessPiece(ChessBoard.coord(x, frontRow), this, board))
                 .collect(toList());
-        soldiers.addAll(soldiers);
+        members.addAll(soldiers);
         this.board=board;
     }
 

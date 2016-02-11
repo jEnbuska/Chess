@@ -1,5 +1,6 @@
 package tests;
 
+import com.company.Chess;
 import com.company.Components.*;
 import org.junit.Assert;
 
@@ -37,8 +38,18 @@ public class QueenTest {
             if(!(member instanceof QueenChessPiece))
                 team2.remove(member);
         }
+        for(ChessPiece member : team1.getSoldiers()){
+                team2.remove(member);
+        }
+
+        for(ChessPiece member : team2.getSoldiers()){
+            team1.remove(member);
+        }
         //team2.getMembers().forEachOrdered(m -> team1.remove(m));
+        //team2.getMembers().forEach(m -> System.out.println("x " + m.getPosition().x + " y " + m.getPosition().y));
         queen.moveTo(p(4,1));
+        System.out.println(stringiFyPieces());
+        System.out.println(stringiFyBoard());
         String expected =
                 "***###**\n"+
                 "####*###\n"+
@@ -175,6 +186,11 @@ public class QueenTest {
         Assert.assertEquals(expected, actual);
     }
 
+
+    private Point p(int x, int y){
+        return new Point(x,y);
+    }
+
     private String stringiFy(Stream<Point> points){
         boolean [][] grid = new boolean[8][8];
         for (int i = 0; i < 8; i++)
@@ -195,9 +211,40 @@ public class QueenTest {
         return description;
     }
 
-    private Point p(int x, int y){
-        return new Point(x,y);
+    private String stringiFyBoard(){
+        String description = "";
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if(board.get(j,i)!=null){
+                    description+="#";
+                }else{
+                    description+="*";
+                }
+            }
+            description+="\n";
+        }
+        return description;
     }
+
+    private String stringiFyPieces(){
+        String description="\n";
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                final int I = i, J = j;
+                if(team1.getMembers().anyMatch(m -> m.getPosition().x==J && m.getPosition().y==I)){
+                    description+="#";
+                }else if(team2.getMembers().anyMatch(m -> m.getPosition().x==J && m.getPosition().y==I)){
+                    description+="&";
+                }else{
+                    description+="*";
+                }
+            }
+            description+="\n";
+        }
+        return description;
+    }
+
+
     private String stringiFy(Point p){
         String description = "\n";
         for (int i = 0; i < 8; i++) {

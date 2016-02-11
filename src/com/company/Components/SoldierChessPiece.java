@@ -12,11 +12,9 @@ import static java.lang.Math.abs;
  */
 public class SoldierChessPiece extends ChessPiece {
 
-    private Point initialPosition;
 
     public SoldierChessPiece(Point initialPosition, ChessTeam team, ChessBoard board) {
         super(initialPosition, team, board);
-        this.initialPosition=initialPosition;
     }
 
     @Override
