@@ -5,7 +5,6 @@ package com.company;
  */
 public abstract class Game {
     protected int playersCount;
-    
 
     abstract void initializeGame();
 
