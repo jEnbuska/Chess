@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Components;
 /**
  * Created by WinNabuska on 10.2.2016.
  */

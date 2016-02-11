@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Components;
 
 
 import java.awt.*;
@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 public abstract class ChessPiece {
 
     protected final ChessBoard board;
+    protected boolean hasMoved;
     protected Point position;
     protected final Predicate<Point> hasFoe, hasFriend, isEmpty, kingStaysSafe, hasOpponentsKing;
     protected final ChessTeam team;
@@ -30,31 +31,40 @@ public abstract class ChessPiece {
         this.position=initialPosition;
         board.set(position, this);
         this.isEmpty = p -> board.isEmpty(p);
-        hasFoe = p -> team.getOpponent().getMembers().anyMatch(foe -> foe.position.x==p.x && foe.position.y==p.x);
-        hasFriend = p -> team.getMembers().anyMatch(friend -> friend.position.x==p.x && friend.position.y==p.x);
+        hasFoe = p -> team.getOpponent().getMembers().anyMatch(foe -> foe.position.equals(p));
+        hasFriend = p -> team.getMembers().anyMatch(friend -> friend.position.equals(p));
         hasOpponentsKing = p -> team.getOpponent().getKing().position.equals(p);
         kingStaysSafe = p -> {
             boolean check;
-            if(!team.kingIsThreatened()) {
-                board.clear(position);
-                ChessPiece placeHolder = board.get(p);
-                board.set(p, this);
-                check = !team.kingIsThreatened();
-                board.set(p, placeHolder);
-                board.set(this.position, this);
-            } else {
-                check=true;
-            }
+            board.clear(position);
+            ChessPiece placeHolder = board.get(p);
+            if(placeHolder!=null)
+                team.remove(placeHolder);
+            Point originalPosition = position;
+            setPosition(p);
+            check = !team.kingIsThreatened();
+            setPosition(originalPosition);
+            if(placeHolder!=null)
+                placeHolder.setPosition(p);
             return check;
         };
+        hasMoved=false;
     }
 
 
     protected abstract Stream<Point> possibleMoves();
     public abstract Stream<Point> safeMoves();
 
+    //moveTo is same as setPosition but it is public and it does set hasMoved to true
     public final void moveTo(Point newPos){
-        board.clear(position);
+        hasMoved=true;
+        setPosition(newPos);
+    }
+
+    //SetPosition is same as moveTo but it is protected and does not set hasMoved to true
+    protected final void setPosition(Point newPos){
+        if(ChessBoard.validLocation(position))
+            board.clear(position);
         if(ChessBoard.validLocation(newPos))
             board.set(newPos, this);
         position=newPos;

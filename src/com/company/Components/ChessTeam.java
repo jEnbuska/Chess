@@ -1,33 +1,34 @@
-package com.company;
+package com.company.Components;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * Created by WinNabuska on 10.2.2016.
  */
 public class ChessTeam {
 
-    private KingChessPiece king;
-    private QueenChessPiece queen;
-    private RookChessPiece rook1;
-    private RookChessPiece rook2;
+    private ChessPiece king;
+    private ChessPiece queen;
+    private List<ChessPiece> rooks;
+    private List<ChessPiece> soldiers;
     private ChessBoard board;
     private ChessTeam opponent;
     private final Direction HEADING;
-    private Set<ChessPiece> members;
+    private Collection<ChessPiece> members;
 
     public ChessTeam(ChessBoard board, Direction heading){
         HEADING = heading;
         int backRow, frontRow, queensColumn, kingColumn;
         if(HEADING==Direction.NORTH){
             backRow=7;
-            backRow=6;
+            frontRow=6;
             queensColumn=3;
             kingColumn=4;
         } else if(HEADING == Direction.SOUTH){
@@ -38,12 +39,18 @@ public class ChessTeam {
         } else{
             throw new Error("ChessTeam constructor should receive NORTH or SOUTH as its heading parameter");
         }
-        members = new HashSet<>(Arrays.asList(
-                king = new KingChessPiece(ChessBoard.coord(kingColumn, backRow), this, board),
-                queen = new QueenChessPiece(ChessBoard.coord(queensColumn, backRow), this, board),
-                rook1=new RookChessPiece(ChessBoard.coord(0, backRow),this,board),
-                rook2=new RookChessPiece(ChessBoard.coord(7, backRow), this, board)
-        ));
+        members = new HashSet<>();
+        members.add(king = new KingChessPiece(ChessBoard.coord(kingColumn, backRow), this, board));
+        members.add(queen = new QueenChessPiece(ChessBoard.coord(queensColumn, backRow), this, board));
+        rooks = Arrays.asList(
+                new RookChessPiece(ChessBoard.coord(0, backRow),this,board),
+                new RookChessPiece(ChessBoard.coord(7, backRow), this, board)
+        );
+        members.addAll(rooks);
+        soldiers = IntStream.range(0,8).boxed().map(x ->
+                new SoldierChessPiece(ChessBoard.coord(x, frontRow), this, board))
+                .collect(toList());
+        soldiers.addAll(soldiers);
         this.board=board;
     }
 
@@ -74,11 +81,11 @@ public class ChessTeam {
     }
 
     public List<ChessPiece> getSoldiers(){
-        throw new NotImplementedException();
+        return soldiers;
     }
 
-    public List<RookChessPiece> getRooks(){//Tornit
-        return Arrays.asList(rook1,rook2);
+    public List<ChessPiece> getRooks(){//Tornit
+        return rooks;
     }
     public List<ChessPiece> getBishops(){//piispat
         throw new NotImplementedException();
@@ -92,16 +99,16 @@ public class ChessTeam {
         return members.stream();
     }
 
-    public void eliminate(ChessPiece enemy){
+    public void remove(ChessPiece enemy){
         if(members.stream().anyMatch(f -> f == enemy)){
             throw new Error("ones teams should now destroy its team member as enemy");
         }
         board.clear(enemy.position);
         if(HEADING == Direction.NORTH){
-            enemy.moveTo(ChessBoard.coord(1000,-1));
+            enemy.setPosition(ChessBoard.coord(1000,-1));
         }else{//SOUTH{
-            enemy.moveTo(ChessBoard.coord(-1000, 8));
+            enemy.setPosition(ChessBoard.coord(-1000, 8));
         }
-        opponent.members.remove(enemy);
+        //opponent.members.remove(enemy);
     }
 }
