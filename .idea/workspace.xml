@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="262abf97-b093-4197-92f0-04a1ec5127fb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/ChessBoard.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/ChessBoard.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/ChessPiece.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/ChessPiece.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/ChessTeam.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/ChessTeam.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/QueenChessPiece.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/QueenChessPiece.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/SoldierChessPiece.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/SoldierChessPiece.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/tests/ChessTestSuite.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/tests/ChessTestSuite.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/tests/QueenTest.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/tests/QueenTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/tests/SoldierTest.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/tests/SoldierTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/ChessTestSuite.java" afterPath="$PROJECT_DIR$/src/tests/ChessTestSuite.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/QueenTest.java" afterPath="$PROJECT_DIR$/src/tests/QueenTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/SoldierTest.java" afterPath="$PROJECT_DIR$/src/tests/SoldierTest.java" />
-    </list>
+    <list default="true" id="262abf97-b093-4197-92f0-04a1ec5127fb" name="Default" comment="" />
     <ignored path="8.2.2016.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -99,8 +86,8 @@
       <file leaf-file-name="SoldierTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/tests/SoldierTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9357278">
-              <caret line="133" column="40" selection-start-line="133" selection-start-column="40" selection-end-line="133" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.710775">
+              <caret line="159" column="68" selection-start-line="159" selection-start-column="68" selection-end-line="159" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -938,7 +925,7 @@
       <workItem from="1455170315867" duration="13000" />
       <workItem from="1455170473785" duration="11000" />
       <workItem from="1455171055139" duration="84000" />
-      <workItem from="1455171504861" duration="1931000" />
+      <workItem from="1455171504861" duration="2036000" />
     </task>
     <servers />
   </component>
@@ -975,7 +962,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43188000" />
+    <option name="totallyTimeSpent" value="43293000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1475,8 +1462,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tests/SoldierTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9357278">
-          <caret line="133" column="40" selection-start-line="133" selection-start-column="40" selection-end-line="133" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.710775">
+          <caret line="159" column="68" selection-start-line="159" selection-start-column="68" selection-end-line="159" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
