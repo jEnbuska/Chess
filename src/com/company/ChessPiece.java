@@ -1,15 +1,11 @@
 package com.company;
 
-import com.sun.istack.internal.Nullable;
 
 import java.awt.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.EnumMap;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
-import static java.lang.Math.*;
 
 /**
  * Created by joonaen on 8.2.2016.
@@ -17,46 +13,54 @@ import static java.lang.Math.*;
 public abstract class ChessPiece {
 
     protected final ChessBoard board;
-    private final KingChessPiece king;
-    private final List<ChessPiece> friends, foes;
     protected Point position;
-    protected final Predicate<Point> hasFoe, doesNotCompromiseTheKing;
+    protected final Predicate<Point> hasFoe, hasFriend, isEmpty, kingStaysSafe, hasOpponentsKing;
+    protected final ChessTeam team;
+    protected static EnumMap<Direction, Consumer<Point>> oneStepMoves = new EnumMap<Direction, Consumer<Point>>(Direction.class);
+    static{
+        oneStepMoves.put(Direction.NORTH, p -> p.translate(0,-1));      oneStepMoves.put(Direction.NORTH_EAST, p -> p.translate(1, -1));
+        oneStepMoves.put(Direction.EAST, p -> p.translate(1, 0));       oneStepMoves.put(Direction.SOUT_EAST, p -> p.translate(1, 1));
+        oneStepMoves.put(Direction.SOUTH, p -> p.translate(0, 1));      oneStepMoves.put(Direction.SOUT_WEST, p -> p.translate(-1,1));
+        oneStepMoves.put(Direction.WEST, p -> p.translate(-1,0));       oneStepMoves.put(Direction.NORTH_WEST, p -> p.translate(-1,-1));
+    }
 
-    public ChessPiece(ChessBoard board, Point position, @Nullable KingChessPiece king, List<ChessPiece> friends, List<ChessPiece> foes){
-        this.board = board;
-        this.position=position;
-        this.king=king;
-        this.friends=friends;
-        this.foes=foes;
-        hasFoe = p ->  foes().anyMatch(foesPos -> foesPos.equals(p));
-        doesNotCompromiseTheKing = p -> {
-            boolean chess;
-            if(!king.isThreatened()) {
-                board.put(position, Optional.empty());
-                board.put(p, Optional.of(this));
-                chess = king.isThreatened();
-                board.put(position, Optional.of(this));
-                board.put(p, Optional.empty());
+    public ChessPiece(Point initialPosition, ChessTeam team, ChessBoard board){
+        this.board=board;
+        this.team=team;
+        this.position=initialPosition;
+        board.set(position, this);
+        this.isEmpty = p -> board.isEmpty(p);
+        hasFoe = p -> team.getOpponent().getMembers().anyMatch(foe -> foe.position.x==p.x && foe.position.y==p.x);
+        hasFriend = p -> team.getMembers().anyMatch(friend -> friend.position.x==p.x && friend.position.y==p.x);
+        hasOpponentsKing = p -> team.getOpponent().getKing().position.equals(p);
+        kingStaysSafe = p -> {
+            boolean check;
+            if(!team.kingIsThreatened()) {
+                board.clear(position);
+                ChessPiece placeHolder = board.get(p);
+                board.set(p, this);
+                check = !team.kingIsThreatened();
+                board.set(p, placeHolder);
+                board.set(this.position, this);
             } else {
-                chess=false;
+                check=true;
             }
-            return chess;
+            return check;
         };
     }
 
-    protected Stream<ChessPiece> foes(){
-        return foes.stream();
+
+    protected abstract Stream<Point> possibleMoves();
+    public abstract Stream<Point> safeMoves();
+
+    public final void moveTo(Point newPos){
+        board.clear(position);
+        if(ChessBoard.validLocation(newPos))
+            board.set(newPos, this);
+        position=newPos;
     }
 
-    public Point getPosition(){
+    public final Point getPosition(){
         return position;
-    }
-
-    public abstract Stream<Point> possibleMoves();
-
-    public final void moveTo(Point p){
-        board.set(position, Optional.empty());
-        board.set(p,Optional.of(this));
-        position=p;
     }
 }
