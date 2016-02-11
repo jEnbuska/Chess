@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="262abf97-b093-4197-92f0-04a1ec5127fb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/company/Components/BishopChessPiece.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/tests/RookTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/tests/ChessTestSuite.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/tests/ChessTestSuite.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/tests/QueenTest.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/tests/QueenTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Components/ChessPiece.java" afterPath="$PROJECT_DIR$/src/com/company/Components/ChessPiece.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Components/QueenChessPiece.java" afterPath="$PROJECT_DIR$/src/com/company/Components/QueenChessPiece.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Components/RookChessPiece.java" afterPath="$PROJECT_DIR$/src/com/company/Components/RookChessPiece.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Components/SoldierChessPiece.java" afterPath="$PROJECT_DIR$/src/com/company/Components/SoldierChessPiece.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/ChessTestSuite.java" afterPath="$PROJECT_DIR$/src/tests/ChessTestSuite.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/QueenTest.java" afterPath="$PROJECT_DIR$/src/tests/QueenTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Components/BishopChessPiece.java" afterPath="$PROJECT_DIR$/src/com/company/Components/BishopChessPiece.java" />
     </list>
     <ignored path="8.2.2016.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,8 +47,8 @@
             <file leaf-file-name="BishopChessPiece.java" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/com/company/Components/BishopChessPiece.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.45212767">
-                    <caret line="25" column="46" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
+                  <state vertical-scroll-proportion="0.7595745">
+                    <caret line="42" column="12" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
                     <folding>
                       <element signature="imports" expanded="true" />
                     </folding>
@@ -183,8 +173,8 @@
         <option value="$PROJECT_DIR$/src/tests/ChessTestSuite.java" />
         <option value="$PROJECT_DIR$/src/tests/RookTest.java" />
         <option value="$PROJECT_DIR$/src/com/company/Components/DirectlyUnlimitedMover.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Components/BishopChessPiece.java" />
         <option value="$PROJECT_DIR$/src/com/company/Components/QueenChessPiece.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Components/BishopChessPiece.java" />
       </list>
     </option>
   </component>
@@ -963,7 +953,7 @@
       <workItem from="1455170315867" duration="13000" />
       <workItem from="1455170473785" duration="11000" />
       <workItem from="1455171055139" duration="84000" />
-      <workItem from="1455171504861" duration="3422000" />
+      <workItem from="1455171504861" duration="3468000" />
     </task>
     <servers />
   </component>
@@ -1000,7 +990,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44679000" />
+    <option name="totallyTimeSpent" value="44725000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1471,16 +1461,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Components/BishopChessPiece.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45212767">
-          <caret line="25" column="46" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Components/QueenChessPiece.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41776937">
@@ -1495,6 +1475,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.754">
           <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Components/BishopChessPiece.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7595745">
+          <caret line="42" column="12" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -40,6 +40,7 @@ public class BishopChessPiece extends ChessPiece {
             }
         });
         return moves.stream();
+        /**/
     }
 
     @Override
