@@ -1,5 +1,8 @@
 package com.company;
 
+import com.company.Components.ChessPiece;
+import com.company.Components.KingChessPiece;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;

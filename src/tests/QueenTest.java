@@ -1,6 +1,6 @@
 package tests;
 
-import com.company.*;
+import com.company.Components.*;
 import org.junit.Assert;
 
 import java.awt.*;
@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.toList;
 /**
  * Created by joona on 10/02/2016.
  */
-public class QueenChessPieceTest {
+public class QueenTest {
 
     private ChessBoard board;
     private ChessTeam team1, team2;
@@ -31,13 +31,13 @@ public class QueenChessPieceTest {
     @org.junit.Test
     public void testPossibleMoves_EmptyBoard() throws Exception {
         for(ChessPiece member : team2.getMembers().collect(toList())){
-            team1.eliminate(member);
+            team1.remove(member);
         }
         for(ChessPiece member : team1.getMembers().collect(toList())){
             if(!(member instanceof QueenChessPiece))
-                team2.eliminate(member);
+                team2.remove(member);
         }
-        //team2.getMembers().forEachOrdered(m -> team1.eliminate(m));
+        //team2.getMembers().forEachOrdered(m -> team1.remove(m));
         queen.moveTo(p(4,1));
         String expected =
                 "***###**\n"+
@@ -55,16 +55,16 @@ public class QueenChessPieceTest {
     @org.junit.Test
     public void testPossibleMoves_TwoFriendBlocking() throws Exception {
         for(ChessPiece member : team2.getMembers().collect(toList())){
-            team1.eliminate(member);
+            team1.remove(member);
         }
         for(ChessPiece member : team1.getMembers().collect(toList())){
             if(member instanceof QueenChessPiece || member instanceof RookChessPiece)
                 continue;
             else
-                team2.eliminate(member);
+                team2.remove(member);
         }
         team1.getQueen().moveTo(p(4,1));
-        List<RookChessPiece> rooks = team1.getRooks();
+        List<ChessPiece> rooks = team1.getRooks();
         rooks.get(0).moveTo(p(4,4));
         rooks.get(1).moveTo(p(0,5));
         String expected =
@@ -82,21 +82,97 @@ public class QueenChessPieceTest {
 
     @org.junit.Test
     public void testPossibleMoves_TwoFoesBlocking() throws Exception {
-        /*int x = 4, y = 1;
-        QueenChessPiece queen = new QueenChessPiece(board, p(x,y), king,friends,foes);
-        foes.add(new QueenChessPiece(board, p(4,4), king,foes,friends));
-        foes.add(new QueenChessPiece(board, p(1,4), king,foes,friends));
+        for(ChessPiece member : team2.getMembers().collect(toList())){
+            if(member instanceof RookChessPiece)
+                continue;
+            else
+                team1.remove(member);
+        }
+        for(ChessPiece member : team1.getMembers().collect(toList())){
+            if(member instanceof QueenChessPiece)
+                continue;
+            else
+                team2.remove(member);
+        }
+        team1.getQueen().moveTo(p(4,1));
+        List<ChessPiece> rooks = team2.getRooks();
+        rooks.get(0).moveTo(p(4,3));
+        rooks.get(1).moveTo(p(1,4));
         String expected =
-                "***###**\n"+
+                        "***###**\n"+
                         "####*###\n"+
                         "***###**\n"+
                         "**#*#*#*\n"+
-                        "*#**#**#\n"+
+                        "*#*****#\n"+
                         "********\n"+
                         "********\n"+
                         "********\n";
-        String actual = stringiFy(queen.possibleMoves());
-        Assert.assertEquals(expected, actual);*/
+        String actual = stringiFy(queen.safeMoves());
+        Assert.assertEquals(expected, actual);
+    }
+
+    @org.junit.Test
+    public void testPossibleMoves_ProtectingKing() throws Exception {
+        for(ChessPiece member : team2.getMembers().collect(toList())){
+            if(member instanceof RookChessPiece)
+                continue;
+            else
+                team1.remove(member);
+        }
+        for(ChessPiece member : team1.getMembers().collect(toList())){
+            if(member instanceof QueenChessPiece || member instanceof KingChessPiece)
+                continue;
+            else
+                team2.remove(member);
+        }
+        team1.getQueen().moveTo(p(4,1));
+        team1.getKing().moveTo(p(4,0));
+        List<ChessPiece> rooks = team2.getRooks();
+        rooks.get(0).moveTo(p(4,3));
+        rooks.get(1).moveTo(p(1,4));
+        String expected =
+                        "********\n"+
+                        "********\n"+
+                        "****#***\n"+
+                        "****#***\n"+
+                        "********\n"+
+                        "********\n"+
+                        "********\n"+
+                        "********\n";
+        String actual = stringiFy(queen.safeMoves());
+        Assert.assertEquals(expected, actual);
+    }
+
+    @org.junit.Test
+    public void testPossibleMoves_CheckMate() throws Exception {
+        for(ChessPiece member : team2.getMembers().collect(toList())){
+            if(member instanceof RookChessPiece)
+                continue;
+            else
+                team1.remove(member);
+        }
+        for(ChessPiece member : team1.getMembers().collect(toList())){
+            if(member instanceof QueenChessPiece || member instanceof KingChessPiece)
+                continue;
+            else
+                team2.remove(member);
+        }
+        team1.getQueen().moveTo(p(4,1));
+        team1.getKing().moveTo(p(4,0));
+        List<ChessPiece> rooks = team2.getRooks();
+        rooks.get(0).moveTo(p(4,3));
+        rooks.get(1).moveTo(p(1,0));
+        String expected =
+                        "********\n"+
+                        "********\n"+
+                        "********\n"+
+                        "********\n"+
+                        "********\n"+
+                        "********\n"+
+                        "********\n"+
+                        "********\n";
+        String actual = stringiFy(queen.safeMoves());
+        Assert.assertEquals(expected, actual);
     }
 
     private String stringiFy(Stream<Point> points){

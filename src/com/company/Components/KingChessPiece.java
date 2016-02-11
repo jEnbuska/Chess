@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Components;
 
 import java.awt.*;
 import java.util.function.Predicate;

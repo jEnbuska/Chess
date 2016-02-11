@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Components;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -28,7 +28,6 @@ public class ChessBoard {
         try {
             return coords[x][y];
         }catch (IndexOutOfBoundsException e){
-            System.out.print("ChessPiece has been eliminated");
             return new Point(x,y);
         }
     }
