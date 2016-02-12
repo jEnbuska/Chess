@@ -21,6 +21,7 @@ public class Chess extends Game {
         teams[0].setOpponent(teams[1]);
         teams[1].setOpponent(teams[0]);
         teams[0].setTurn(true);
+        new ChessView(this);
         //TODO create UI
     }
 
