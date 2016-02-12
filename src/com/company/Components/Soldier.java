@@ -8,10 +8,10 @@ import java.util.stream.Stream;
 /**
  * Created by WinNabuska on 10.2.2016.
  */
-public class SoldierChessPiece extends ChessPiece {
+public class Soldier extends ChessPiece {
 
 
-    public SoldierChessPiece(Point initialPosition, ChessTeam team, ChessBoard board) {
+    public Soldier(Point initialPosition, ChessTeam team, ChessBoard board) {
         super(initialPosition, team, board);
     }
     @Override
@@ -38,10 +38,5 @@ public class SoldierChessPiece extends ChessPiece {
         if(ChessBoard.validLocation(sideFront2) && hasFoe.test(sideFront2))
             moves.add(sideFront2);
         return moves.stream();
-    }
-
-    @Override
-    public Stream<Point> safeMoves() {
-        return possibleMoves().filter(m -> kingStaysSafe.or(hasOpponentsKing).test(m));
     }
 }

@@ -52,15 +52,21 @@ public abstract class ChessPiece {
         };
     }
 
-
+    /*possibleMoves does not have to care about teams kings safety.
+    DO NOT call methods 'safeMoves' or 'moveTo' (instead of moveTo use setPosition when you have to)
+    method inside from from possibleMoves*/
     protected abstract Stream<Point> possibleMoves();
-    public abstract Stream<Point> safeMoves();
 
-    //moveTo is same as setPosition but it is public and it does set hasMoved to true
+    public final Stream<Point> safeMoves() {
+        return possibleMoves().filter(location -> kingStaysSafe.or(hasOpponentsKing).test(location));
+    }
+
+    //moveTo should never be called inside from method 'possibleMoves' is same as setPosition but it is public and it does set hasMoved to true
     public final void moveTo(Point newPos){
         hasMoved=true;
         setPosition(newPos);
     }
+
 
     //SetPosition is same as moveTo but it is protected and does not set hasMoved to true
     protected final void setPosition(Point newPos){

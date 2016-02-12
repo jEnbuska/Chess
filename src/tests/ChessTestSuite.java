@@ -14,7 +14,9 @@ import java.util.stream.Stream;
 @Suite.SuiteClasses({
         QueenTest.class,
         SoldierTest.class,
-        RookTest.class
+        RookTest.class,
+        BishopTest.class,
+        KnightTest.class
 })
 public class ChessTestSuite {
 

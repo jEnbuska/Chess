@@ -8,8 +8,8 @@ import java.util.stream.Stream;
 /**
  * Created by joona on 10/02/2016.
  */
-public class QueenChessPiece extends ChessPiece {
-    public QueenChessPiece(Point initialPosition, ChessTeam team, ChessBoard board) {
+public class Queen extends ChessPiece {
+    public Queen(Point initialPosition, ChessTeam team, ChessBoard board) {
         super(initialPosition, team, board);
     }
     @Override
@@ -31,11 +31,5 @@ public class QueenChessPiece extends ChessPiece {
             }
         });
         return moves.stream();
-    }
-
-    @Override
-    public Stream<Point> safeMoves() {
-        return possibleMoves().
-                filter(location -> kingStaysSafe.or(hasOpponentsKing).test(location));
     }
 }

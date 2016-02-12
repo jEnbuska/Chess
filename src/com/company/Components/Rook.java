@@ -8,23 +8,23 @@ import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 /**
- * Created by WinNabuska on 11.2.2016.
+ * Created by WinNabuska on 10.2.2016.
  */
-public class BishopChessPiece extends ChessPiece {
+public class Rook extends ChessPiece {
 
-    private static List<Consumer<Point>> transverseSteps = Arrays.asList(
-            singleSteps.get(Direction.NORTH_EAST), singleSteps.get(Direction.SOUT_EAST),
-            singleSteps.get(Direction.SOUT_WEST), singleSteps.get(Direction.NORTH_WEST)
+    private static List<Consumer<Point>> perpendicularMoves = Arrays.asList(
+            singleSteps.get(Direction.NORTH), singleSteps.get(Direction.EAST),
+            singleSteps.get(Direction.SOUTH), singleSteps.get(Direction.WEST)
     );
 
-    public BishopChessPiece(Point initialPosition, ChessTeam team, ChessBoard board) {
+    public Rook(Point initialPosition, ChessTeam team, ChessBoard board) {
         super(initialPosition, team, board);
     }
 
     @Override
     protected Stream<Point> possibleMoves() {
         List<Point> moves = new ArrayList<>();
-        transverseSteps.forEach(move -> {
+        perpendicularMoves.forEach(move -> {
             Point location = position.getLocation();
             move.accept(location);
             while (ChessBoard.validLocation(location)) {
@@ -40,11 +40,5 @@ public class BishopChessPiece extends ChessPiece {
             }
         });
         return moves.stream();
-        /**/
-    }
-
-    @Override
-    public Stream<Point> safeMoves() {
-        return possibleMoves().filter(location -> kingStaysSafe.or(hasOpponentsKing).test(location));
     }
 }
