@@ -35,7 +35,7 @@ public class QueenTest {
             team1.remove(member);
         }
         for(ChessPiece member : team1.getMembers().collect(toList())){
-            if(!(member instanceof QueenChessPiece))
+            if(!(member instanceof Queen))
                 team2.remove(member);
         }
         //team2.getMembers().forEachOrdered(m -> team1.remove(m));
@@ -62,7 +62,7 @@ public class QueenTest {
             team1.remove(member);
         }
         for(ChessPiece member : team1.getMembers().collect(toList())){
-            if(member instanceof QueenChessPiece || member instanceof RookChessPiece)
+            if(member instanceof Queen || member instanceof Rook)
                 continue;
             else
                 team2.remove(member);
@@ -87,13 +87,13 @@ public class QueenTest {
     @org.junit.Test
     public void testPossibleMoves_TwoFoesBlocking() throws Exception {
         for(ChessPiece member : team2.getMembers().collect(toList())){
-            if(member instanceof RookChessPiece)
+            if(member instanceof Rook)
                 continue;
             else
                 team1.remove(member);
         }
         for(ChessPiece member : team1.getMembers().collect(toList())){
-            if(member instanceof QueenChessPiece)
+            if(member instanceof Queen)
                 continue;
             else
                 team2.remove(member);
@@ -118,13 +118,13 @@ public class QueenTest {
     @org.junit.Test
     public void testPossibleMoves_ProtectingKing() throws Exception {
         for(ChessPiece member : team2.getMembers().collect(toList())){
-            if(member instanceof RookChessPiece)
+            if(member instanceof Rook)
                 continue;
             else
                 team1.remove(member);
         }
         for(ChessPiece member : team1.getMembers().collect(toList())){
-            if(member instanceof QueenChessPiece || member instanceof KingChessPiece)
+            if(member instanceof Queen || member instanceof King)
                 continue;
             else
                 team2.remove(member);
@@ -150,13 +150,13 @@ public class QueenTest {
     @org.junit.Test
     public void testPossibleMoves_CheckMate() throws Exception {
         for(ChessPiece member : team2.getMembers().collect(toList())){
-            if(member instanceof RookChessPiece)
+            if(member instanceof Rook)
                 continue;
             else
                 team1.remove(member);
         }
         for(ChessPiece member : team1.getMembers().collect(toList())){
-            if(member instanceof QueenChessPiece || member instanceof KingChessPiece)
+            if(member instanceof Queen || member instanceof King)
                 continue;
             else
                 team2.remove(member);

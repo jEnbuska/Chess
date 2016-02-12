@@ -15,16 +15,17 @@ import static java.util.stream.Collectors.toList;
  * Created by WinNabuska on 10.2.2016.
  */
 public class ChessTeam {
-    private ChessPiece king;
-    private ChessPiece queen;
-    private List<ChessPiece> rooks;
-    private List<ChessPiece> soldiers;
+    private ChessPiece king, queen;
+    private List<ChessPiece> rooks, bishops, soldiers, knights;
     private ChessBoard board;
     private ChessTeam opponent;
     private final Direction HEADING;
     private Collection<ChessPiece> members;
+    private boolean ourTurn;
 
     public ChessTeam(ChessBoard board, Direction heading){
+        ourTurn=false;
+        this.board=board;
         HEADING = heading;
         int backRow, frontRow, queensColumn, kingColumn;
         if(HEADING==Direction.NORTH){
@@ -41,18 +42,39 @@ public class ChessTeam {
             throw new Error("ChessTeam constructor should receive NORTH or SOUTH as its heading parameter");
         }
         members = new HashSet<>();
-        members.add(king = new KingChessPiece(ChessBoard.coord(kingColumn, backRow), this, board));
-        members.add(queen = new QueenChessPiece(ChessBoard.coord(queensColumn, backRow), this, board));
+        members.add(king = new King(ChessBoard.coord(kingColumn, backRow), this, board));
+        members.add(queen = new Queen(ChessBoard.coord(queensColumn, backRow), this, board));
         rooks = Arrays.asList(
-                new RookChessPiece(ChessBoard.coord(0, backRow),this,board),
-                new RookChessPiece(ChessBoard.coord(7, backRow), this, board)
+                new Rook(ChessBoard.coord(0, backRow),this,board),
+                new Rook(ChessBoard.coord(7, backRow), this, board)
         );
         members.addAll(rooks);
+        bishops = Arrays.asList(
+                new Bishop(ChessBoard.coord(2, backRow), this, board),
+                new Bishop(ChessBoard.coord(5, backRow), this, board)
+        );
+
+        knights = Arrays.asList(
+                new Knight(ChessBoard.coord(1, backRow), this, board),
+                new Knight(ChessBoard.coord(6, backRow), this, board)
+        );
+        members.addAll(knights);
+        members.addAll(bishops);
         soldiers = IntStream.range(0,8).boxed().map(x ->
-                new SoldierChessPiece(ChessBoard.coord(x, frontRow), this, board))
+                new Soldier(ChessBoard.coord(x, frontRow), this, board))
                 .collect(toList());
         members.addAll(soldiers);
-        this.board=board;
+
+        //TODO muita AINA lisätä nappulat myös MEMBERS muuttujaan;
+
+    }
+
+    public void setTurn(boolean turn){
+        ourTurn=turn;
+    }
+
+    public boolean hasTurn(){
+        return ourTurn;
     }
 
     public Direction getHeading(){
@@ -89,11 +111,11 @@ public class ChessTeam {
         return rooks;
     }
     public List<ChessPiece> getBishops(){//piispat
-        throw new NotImplementedException();
+        return bishops;
     }
 
     public List<ChessPiece> getKnights(){//hevoset
-        throw new NotImplementedException();
+        return knights;
     }
 
     public Stream<ChessPiece> getMembers() {
