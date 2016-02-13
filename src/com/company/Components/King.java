@@ -21,9 +21,14 @@ public class King extends ChessPiece{
     }
 
     @Override
-    protected Stream<Point> possibleMoves() {
+    protected Stream<Point> getMovementRange() {
         return ChessBoard.coords()
                 .filter(p -> isOneStepAway.test(p))
                 .filter(p -> isEmpty.or(hasFoe).test(p));
+    }
+
+    @Override
+    public String getDescription() {
+        return team.getDescription() + "king";
     }
 }

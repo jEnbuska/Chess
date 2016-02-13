@@ -11,7 +11,6 @@ import java.awt.*;
 
 import static java.lang.Math.abs;
 import static java.util.stream.Collectors.toList;
-import static org.junit.Assert.*;
 
 /**
  * Created by joonaen on 12.2.2016.
@@ -45,8 +44,8 @@ public class KnightTest {
                         "**#*#***\n"+
                         "********\n"+
                         "********\n";
-        System.out.println(ChessTestSuite.stringiFy(knight.safeMoves()));
-        String actual = ChessTestSuite.stringiFy(knight.safeMoves());
+        System.out.println(ChessTestSuite.stringiFy(knight.getOptions()));
+        String actual = ChessTestSuite.stringiFy(knight.getOptions());
         Assert.assertEquals(expected,actual);
 
         for(ChessPiece member : team2.getMembers().collect(toList())){
@@ -65,8 +64,8 @@ public class KnightTest {
                         "*#***#**\n"+
                         "**#*#***\n"+
                         "********\n";
-        System.out.println(ChessTestSuite.stringiFy(knight.safeMoves()));
-        actual = ChessTestSuite.stringiFy(knight.safeMoves());
+        System.out.println(ChessTestSuite.stringiFy(knight.getOptions()));
+        actual = ChessTestSuite.stringiFy(knight.getOptions());
         Assert.assertEquals(expected,actual);
     }
 

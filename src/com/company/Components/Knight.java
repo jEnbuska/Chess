@@ -15,7 +15,7 @@ public class Knight extends ChessPiece{
     }
 
     @Override
-    protected Stream<Point> possibleMoves() {
+    protected Stream<Point> getMovementRange() {
         int [] verticalSteps = {1,-1};
         int [] horizontalSteps = {2,-2};
         Set<Point> steps = new HashSet<>();
@@ -37,5 +37,12 @@ public class Knight extends ChessPiece{
             }
         }
         return steps.stream();
+    }
+
+
+
+    @Override
+    public String getDescription() {
+        return team.getDescription() + "knight";
     }
 }

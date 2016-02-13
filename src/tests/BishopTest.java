@@ -1,6 +1,9 @@
 package tests;
 
-import com.company.Components.*;
+import com.company.Components.ChessBoard;
+import com.company.Components.ChessPiece;
+import com.company.Components.ChessTeam;
+import com.company.Components.Direction;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -8,7 +11,6 @@ import java.awt.*;
 
 import static java.lang.Math.abs;
 import static java.util.stream.Collectors.toList;
-import static org.junit.Assert.*;
 
 /**
  * Created by joonaen on 12.2.2016.
@@ -42,8 +44,8 @@ public class BishopTest {
                         "*#***#**\n"+
                         "#*****#*\n"+
                         "********\n";
-        System.out.println(ChessTestSuite.stringiFy(bishop.safeMoves()));
-        String actual = ChessTestSuite.stringiFy(bishop.safeMoves());
+        System.out.println(ChessTestSuite.stringiFy(bishop.getOptions()));
+        String actual = ChessTestSuite.stringiFy(bishop.getOptions());
         Assert.assertEquals(expected,actual);
 
         for(ChessPiece member : team2.getMembers().collect(toList())){
@@ -62,8 +64,8 @@ public class BishopTest {
                         "*#***#**\n"+
                         "#*****#*\n"+
                         "*******#\n";
-        System.out.println(ChessTestSuite.stringiFy(bishop.safeMoves()));
-        actual = ChessTestSuite.stringiFy(bishop.safeMoves());
+        System.out.println(ChessTestSuite.stringiFy(bishop.getOptions()));
+        actual = ChessTestSuite.stringiFy(bishop.getOptions());
         Assert.assertEquals(expected,actual);
     }
 

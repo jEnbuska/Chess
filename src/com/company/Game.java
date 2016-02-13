@@ -4,7 +4,13 @@ package com.company;
  * Created by joonaen on 8.2.2016.
  */
 public abstract class Game {
+
     protected int playersCount;
+    protected Runnable latestPlayerAction;
+
+    public void performGameAction(Runnable gameAction){
+        latestPlayerAction=gameAction;
+    }
 
     abstract void initializeGame();
 

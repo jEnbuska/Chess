@@ -1,6 +1,8 @@
 package com.company.Components;
 
 
+import com.company.GameActor;
+
 import java.awt.*;
 import java.util.EnumMap;
 import java.util.function.Consumer;
@@ -10,7 +12,7 @@ import java.util.stream.Stream;
 /**
  * Created by joonaen on 8.2.2016.
  */
-public abstract class ChessPiece {
+public abstract class ChessPiece implements GameActor {
     protected final ChessBoard board;
     protected boolean hasMoved;
     protected Point position;
@@ -30,7 +32,6 @@ public abstract class ChessPiece {
         this.position=initialPosition;
         board.set(position, this);
         hasMoved=false;
-
         /*Predicates*/
         this.isEmpty = p -> board.isEmpty(p);
         this.hasFoe = p -> team.getOpponent().getMembers().anyMatch(foe -> foe.position.equals(p));
@@ -52,21 +53,20 @@ public abstract class ChessPiece {
         };
     }
 
-    /*possibleMoves does not have to care about teams kings safety.
-    DO NOT call methods 'safeMoves' or 'moveTo' (instead of moveTo use setPosition when you have to)
-    method inside from from possibleMoves*/
-    protected abstract Stream<Point> possibleMoves();
-
-    public final Stream<Point> safeMoves() {
-        return possibleMoves().filter(location -> kingStaysSafe.or(hasOpponentsKing).test(location));
+    /*Template method*/
+    @Override
+    public final Stream<Point> getOptions() {
+        return getMovementRange().filter(location -> kingStaysSafe.or(hasOpponentsKing).test(location));
     }
-
-    //moveTo should never be called inside from method 'possibleMoves' is same as setPosition but it is public and it does set hasMoved to true
+    //moveTo should never be called inside from method 'getMovementRange' is same as setPosition but it is public and it does set hasMoved to true
     public final void moveTo(Point newPos){
         hasMoved=true;
         setPosition(newPos);
     }
 
+    public final Point getPosition(){
+        return position;
+    }
 
     //SetPosition is same as moveTo but it is protected and does not set hasMoved to true
     protected final void setPosition(Point newPos){
@@ -77,7 +77,8 @@ public abstract class ChessPiece {
         position=newPos;
     }
 
-    public final Point getPosition(){
-        return position;
-    }
+    /*getMovementRange does not have to care about teams kings safety.
+        DO NOT call methods 'safeMoves' or 'moveTo' (instead of moveTo use setPosition when you have to)
+        method inside from from getMovementRange*/
+    protected abstract Stream<Point> getMovementRange();
 }

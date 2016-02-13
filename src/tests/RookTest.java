@@ -42,8 +42,8 @@ public class RookTest {
                         "***#****\n"+
                         "***#****\n"+
                         "********\n";
-        System.out.println(ChessTestSuite.stringiFy(rook.safeMoves()));
-        String actual = ChessTestSuite.stringiFy(rook.safeMoves());
+        System.out.println(ChessTestSuite.stringiFy(rook.getOptions()));
+        String actual = ChessTestSuite.stringiFy(rook.getOptions());
         Assert.assertEquals(expected,actual);
 
         for(ChessPiece member : team2.getMembers().collect(toList())){
@@ -62,8 +62,8 @@ public class RookTest {
                         "***#****\n"+
                         "***#****\n"+
                         "***#****\n";
-        System.out.println(ChessTestSuite.stringiFy(rook.safeMoves()));
-        actual = ChessTestSuite.stringiFy(rook.safeMoves());
+        System.out.println(ChessTestSuite.stringiFy(rook.getOptions()));
+        actual = ChessTestSuite.stringiFy(rook.getOptions());
         Assert.assertEquals(expected,actual);
     }
 

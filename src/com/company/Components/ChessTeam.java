@@ -1,7 +1,5 @@
 package com.company.Components;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -22,6 +20,7 @@ public class ChessTeam {
     private final Direction HEADING;
     private Collection<ChessPiece> members;
     private boolean ourTurn;
+    private String image_description;
 
     public ChessTeam(ChessBoard board, Direction heading){
         ourTurn=false;
@@ -33,11 +32,13 @@ public class ChessTeam {
             frontRow=6;
             queensColumn=3;
             kingColumn=4;
+            image_description="white_";
         } else if(HEADING == Direction.SOUTH){
             backRow=0;
             frontRow=1;
             queensColumn=4;
             kingColumn=3;
+            image_description="black_";
         } else{
             throw new Error("ChessTeam constructor should receive NORTH or SOUTH as its heading parameter");
         }
@@ -72,6 +73,9 @@ public class ChessTeam {
     public void setTurn(boolean turn){
         ourTurn=turn;
     }
+    public String getDescription(){
+        return image_description;
+    }
 
     public boolean hasTurn(){
         return ourTurn;
@@ -99,7 +103,7 @@ public class ChessTeam {
 
     public boolean kingIsThreatened(){
         return opponent.getMembers()
-                .anyMatch(foe -> foe.possibleMoves()
+                .anyMatch(foe -> foe.getMovementRange()
                         .anyMatch(coord -> coord.x==king.position.x && coord.y==king.position.y));
     }
 

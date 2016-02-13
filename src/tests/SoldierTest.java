@@ -40,7 +40,7 @@ public class SoldierTest {
                         "********\n"+
                         "********\n"+
                         "********\n";
-        Assert.assertEquals(expected, ChessTestSuite.stringiFy(team1.getSoldiers().get(0).safeMoves()));
+        Assert.assertEquals(expected, ChessTestSuite.stringiFy(team1.getSoldiers().get(0).getOptions()));
     }
 
     @Test
@@ -55,7 +55,7 @@ public class SoldierTest {
                         "********\n"+
                         "********\n"+
                         "********\n";
-        Assert.assertEquals(expected, ChessTestSuite.stringiFy(team1.getSoldiers().get(0).safeMoves()));
+        Assert.assertEquals(expected, ChessTestSuite.stringiFy(team1.getSoldiers().get(0).getOptions()));
         team2.getQueen().moveTo(p(0,2));
         expected =
                         "********\n"+
@@ -66,7 +66,7 @@ public class SoldierTest {
                         "********\n"+
                         "********\n"+
                         "********\n";
-        Assert.assertEquals(expected, ChessTestSuite.stringiFy(team1.getSoldiers().get(0).safeMoves()));
+        Assert.assertEquals(expected, ChessTestSuite.stringiFy(team1.getSoldiers().get(0).getOptions()));
     }
 
     @Test
@@ -81,7 +81,7 @@ public class SoldierTest {
                         "********\n"+
                         "********\n"+
                         "********\n";
-        Assert.assertEquals(expected, ChessTestSuite.stringiFy(team1.getSoldiers().get(0).safeMoves()));
+        Assert.assertEquals(expected, ChessTestSuite.stringiFy(team1.getSoldiers().get(0).getOptions()));
     }
     @Test
     public void testSafeMoves_shouldNotBeAbleToReachWithAttack() throws Exception {
@@ -95,7 +95,7 @@ public class SoldierTest {
                         "********\n"+
                         "********\n"+
                         "********\n";
-        Assert.assertEquals(expected, ChessTestSuite.stringiFy(team1.getSoldiers().get(0).safeMoves()));
+        Assert.assertEquals(expected, ChessTestSuite.stringiFy(team1.getSoldiers().get(0).getOptions()));
     }
     @Test
     public void testSafeMoves_hasMoved_shouldOnlyAttackOpponent() throws Exception {
@@ -111,12 +111,12 @@ public class SoldierTest {
                         "********\n"+
                         "********\n";
         team1.getSoldiers().get(2).moveTo(p(2,2));
-        Assert.assertEquals(expected, ChessTestSuite.stringiFy(team1.getSoldiers().get(2).safeMoves()));
+        Assert.assertEquals(expected, ChessTestSuite.stringiFy(team1.getSoldiers().get(2).getOptions()));
     }
 
     @Test
     public void testSafeMoves_shouldOnlyAttackOpponent() throws Exception {
-        Point move = team1.getSoldiers().get(2).safeMoves().filter(p -> abs(p.y-team1.getSoldiers().get(2).getPosition().y)==1).findFirst().get();
+        Point move = team1.getSoldiers().get(2).getOptions().filter(p -> abs(p.y-team1.getSoldiers().get(2).getPosition().y)==1).findFirst().get();
         team1.getSoldiers().get(2).moveTo(move);
         String expected=
                         "********\n"+
@@ -143,7 +143,7 @@ public class SoldierTest {
                         "********\n"+
                         "********\n"+
                         "********\n";
-        Assert.assertEquals(expected, ChessTestSuite.stringiFy(team1.getSoldiers().get(3).safeMoves()));
+        Assert.assertEquals(expected, ChessTestSuite.stringiFy(team1.getSoldiers().get(3).getOptions()));
     }
     @Test
     public void testSafeMoves_shouldNotBeAbleToMove() throws Exception {
@@ -157,7 +157,7 @@ public class SoldierTest {
                         "********\n"+
                         "********\n"+
                         "********\n";
-        Assert.assertEquals(expected, ChessTestSuite.stringiFy(team1.getSoldiers().get(3).safeMoves()));
+        Assert.assertEquals(expected, ChessTestSuite.stringiFy(team1.getSoldiers().get(3).getOptions()));
     }
     private Point p(int x, int y){
         return new Point(x,y);

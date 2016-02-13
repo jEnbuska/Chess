@@ -2,6 +2,7 @@ package tests;
 
 import com.company.Components.*;
 import org.junit.Assert;
+import org.junit.Test;
 
 import java.awt.*;
 import java.util.List;
@@ -52,11 +53,11 @@ public class QueenTest {
                 "#***#***\n"+
                 "****#***\n"+
                 "****#***\n";
-        String actual = ChessTestSuite.stringiFy(queen.safeMoves());
+        String actual = ChessTestSuite.stringiFy(queen.getOptions());
         Assert.assertEquals(expected, actual);
     }
 
-    @org.junit.Test
+    @Test
     public void testPossibleMoves_TwoFriendBlocking() throws Exception {
         for(ChessPiece member : team2.getMembers().collect(toList())){
             team1.remove(member);
@@ -80,7 +81,7 @@ public class QueenTest {
                         "********\n"+
                         "********\n"+
                         "********\n";
-        String actual = ChessTestSuite.stringiFy(queen.safeMoves());
+        String actual = ChessTestSuite.stringiFy(queen.getOptions());
         Assert.assertEquals(expected, actual);
     }
 
@@ -111,11 +112,11 @@ public class QueenTest {
                         "********\n"+
                         "********\n"+
                         "********\n";
-        String actual = ChessTestSuite.stringiFy(queen.safeMoves());
+        String actual = ChessTestSuite.stringiFy(queen.getOptions());
         Assert.assertEquals(expected, actual);
     }
 
-    @org.junit.Test
+    @Test
     public void testPossibleMoves_ProtectingKing() throws Exception {
         for(ChessPiece member : team2.getMembers().collect(toList())){
             if(member instanceof Rook)
@@ -143,7 +144,7 @@ public class QueenTest {
                         "********\n"+
                         "********\n"+
                         "********\n";
-        String actual = ChessTestSuite.stringiFy(queen.safeMoves());
+        String actual = ChessTestSuite.stringiFy(queen.getOptions());
         Assert.assertEquals(expected, actual);
     }
 
@@ -175,7 +176,7 @@ public class QueenTest {
                         "********\n"+
                         "********\n"+
                         "********\n";
-        String actual = ChessTestSuite.stringiFy(queen.safeMoves());
+        String actual = ChessTestSuite.stringiFy(queen.getOptions());
         Assert.assertEquals(expected, actual);
     }
 

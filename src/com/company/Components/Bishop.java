@@ -22,7 +22,7 @@ public class Bishop extends ChessPiece {
     }
 
     @Override
-    protected Stream<Point> possibleMoves() {
+    protected Stream<Point> getMovementRange() {
         List<Point> moves = new ArrayList<>();
         transverseSteps.forEach(move -> {
             Point location = position.getLocation();
@@ -40,5 +40,10 @@ public class Bishop extends ChessPiece {
             }
         });
         return moves.stream();
+    }
+
+    @Override
+    public String getDescription() {
+        return team.getDescription() + "bishop";
     }
 }

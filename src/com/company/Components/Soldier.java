@@ -15,7 +15,7 @@ public class Soldier extends ChessPiece {
         super(initialPosition, team, board);
     }
     @Override
-    protected Stream<Point> possibleMoves() {
+    protected Stream<Point> getMovementRange() {
         Point firstStep = position.getLocation();
         singleSteps.get(team.getHeading()).accept(firstStep);
         Set<Point> moves = new HashSet<>();
@@ -38,5 +38,10 @@ public class Soldier extends ChessPiece {
         if(ChessBoard.validLocation(sideFront2) && hasFoe.test(sideFront2))
             moves.add(sideFront2);
         return moves.stream();
+    }
+
+    @Override
+    public String getDescription() {
+        return team.getDescription() + "soldier";
     }
 }
