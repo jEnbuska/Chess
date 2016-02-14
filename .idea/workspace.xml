@@ -1,41 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="262abf97-b093-4197-92f0-04a1ec5127fb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/company/GameView2D.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Chess.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Chess.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/com/company/ChessController.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/com/company/ChessController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/com/company/ChessView$ChessBoardView.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/com/company/ChessView$ChessBoardView.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/com/company/ChessView.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/com/company/ChessView.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/Bishop.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/Bishop.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/ChessPiece.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/ChessPiece.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/ChessTeam.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/ChessTeam.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/King.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/King.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/Queen.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/Queen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/Rook.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Components/Rook.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Game.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/com/company/Game.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/com/company/GameActor.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/com/company/GameActor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/com/company/GameController.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/com/company/GameController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/tests/ChessTestSuite.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/tests/ChessTestSuite.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/8.2.2016/tests/SoldierTest.class" afterPath="$PROJECT_DIR$/out/production/8.2.2016/tests/SoldierTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Chess.java" afterPath="$PROJECT_DIR$/src/com/company/Chess.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/ChessController.java" afterPath="$PROJECT_DIR$/src/com/company/ChessController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/ChessView.java" afterPath="$PROJECT_DIR$/src/com/company/ChessView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Components/ChessPiece.java" afterPath="$PROJECT_DIR$/src/com/company/Components/ChessPiece.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Components/ChessTeam.java" afterPath="$PROJECT_DIR$/src/com/company/Components/ChessTeam.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Components/King.java" afterPath="$PROJECT_DIR$/src/com/company/Components/King.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Game.java" afterPath="$PROJECT_DIR$/src/com/company/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/GameActor.java" afterPath="$PROJECT_DIR$/src/com/company/GameActor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/GameController.java" afterPath="$PROJECT_DIR$/src/com/company/GameController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Main.java" afterPath="$PROJECT_DIR$/src/com/company/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/BishopTest.java" afterPath="$PROJECT_DIR$/src/tests/BishopTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/ChessTestSuite.java" afterPath="$PROJECT_DIR$/src/tests/ChessTestSuite.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/KnightTest.java" afterPath="$PROJECT_DIR$/src/tests/KnightTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/QueenTest.java" afterPath="$PROJECT_DIR$/src/tests/QueenTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/RookTest.java" afterPath="$PROJECT_DIR$/src/tests/RookTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/SoldierTest.java" afterPath="$PROJECT_DIR$/src/tests/SoldierTest.java" />
-    </list>
+    <list default="true" id="262abf97-b093-4197-92f0-04a1ec5127fb" name="Default" comment="" />
     <ignored path="8.2.2016.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -98,8 +64,8 @@
       <file leaf-file-name="Chess.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Chess.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6768061">
-              <caret line="57" column="37" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.8707224">
+              <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
               <folding>
                 <element signature="e#447#448#0" expanded="true" />
                 <element signature="e#476#477#0" expanded="true" />
@@ -1036,7 +1002,7 @@
       <workItem from="1455288139598" duration="12172000" />
       <workItem from="1455300391807" duration="908000" />
       <workItem from="1455362497805" duration="712000" />
-      <workItem from="1455444826691" duration="16334000" />
+      <workItem from="1455444826691" duration="16406000" />
     </task>
     <servers />
   </component>
@@ -1073,7 +1039,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77062000" />
+    <option name="totallyTimeSpent" value="77134000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1585,8 +1551,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Chess.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6768061">
-          <caret line="57" column="37" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.8707224">
+          <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
           <folding>
             <element signature="e#447#448#0" expanded="true" />
             <element signature="e#476#477#0" expanded="true" />
