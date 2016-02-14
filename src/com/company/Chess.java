@@ -33,8 +33,8 @@ public class Chess extends Game {
         actors.addAll(teams.get(1).getMembers());
         teams.get(0).setOpponent(teams.get(1));
         teams.get(1).setOpponent(teams.get(0));
-        teams.get(0).setTurn(true);
-        teams.get(1).setTurn(false);
+        teams.get(0).setTurn(false);
+        teams.get(1).setTurn(true);
     }
 
     @Override

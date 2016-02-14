@@ -21,6 +21,7 @@ public class ChessController extends GameController {
     public ChessController(ChessView view, Game game){
         super(view, game);
         chessPieceFiles = getActors().stream().map(actor -> actor.getDescription()).distinct().collect(toMap(Function.identity(), description -> {
+            System.out.println("hei");
             File actorImage;
             actorImage= new File(".\\"+description + ".png");
             if(actorImage==null)

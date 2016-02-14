@@ -30,7 +30,6 @@ public abstract class Game extends Observable {
     /* A template method : */
     public final void playOneGame(int playersCount) {
         this.playersCount = playersCount;
-        initializeGame();
         int j = 0;
         do{
             makePlay(j);
