@@ -1,11 +1,7 @@
 package com.company.Components;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -18,8 +14,8 @@ public class ChessTeam {
     private ChessBoard board;
     private ChessTeam opponent;
     private final Direction HEADING;
-    private Collection<ChessPiece> members;
-    private boolean ourTurn;
+    private Set<ChessPiece> members;
+    private volatile boolean ourTurn;
     private String image_description;
 
     public ChessTeam(ChessBoard board, Direction heading){
@@ -32,13 +28,13 @@ public class ChessTeam {
             frontRow=6;
             queensColumn=3;
             kingColumn=4;
-            image_description="white_";
+            image_description="black_";
         } else if(HEADING == Direction.SOUTH){
             backRow=0;
             frontRow=1;
             queensColumn=4;
             kingColumn=3;
-            image_description="black_";
+            image_description="white_";
         } else{
             throw new Error("ChessTeam constructor should receive NORTH or SOUTH as its heading parameter");
         }
@@ -65,9 +61,6 @@ public class ChessTeam {
                 new Soldier(ChessBoard.coord(x, frontRow), this, board))
                 .collect(toList());
         members.addAll(soldiers);
-
-        //TODO muita AINA lisätä nappulat myös MEMBERS muuttujaan;
-
     }
 
     public void setTurn(boolean turn){
@@ -102,7 +95,7 @@ public class ChessTeam {
     }
 
     public boolean kingIsThreatened(){
-        return opponent.getMembers()
+        return opponent.getMembers().stream()
                 .anyMatch(foe -> foe.getMovementRange()
                         .anyMatch(coord -> coord.x==king.position.x && coord.y==king.position.y));
     }
@@ -122,8 +115,8 @@ public class ChessTeam {
         return knights;
     }
 
-    public Stream<ChessPiece> getMembers() {
-        return members.stream();
+    public Set<ChessPiece> getMembers() {
+        return members;
     }
 
     public void remove(ChessPiece enemy){
@@ -136,6 +129,13 @@ public class ChessTeam {
         }else{//SOUTH{
             enemy.setPosition(ChessBoard.coord(-1000, 8));
         }
-        //opponent.members.remove(enemy);
     }
+
+    /*public void resurrect(ChessPiece teamMember, Point position){
+        if(teamMember.team!=this) {
+            throw new Error("only ones tean should resurrect a chesspiece");
+        }
+        chessPiece.setPosition(position);
+        board.set(position, teamMember);
+    }*/
 }

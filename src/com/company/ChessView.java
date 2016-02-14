@@ -3,7 +3,6 @@ package com.company;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -15,34 +14,40 @@ import java.util.Map;
 /**
  * Created by joona on 12/02/2016.
  */
-public class ChessView extends JFrame {
+public class ChessView extends JFrame implements GameView2D {
 
     public final static int BLOCK_SIZE = 100;
     private ChessBoardView boardPanel;
-    private Map<Point, File> locationImages;
+    private Map<Point, File> chessPieceImages;
     private List<Point> highLightedAreas;
 
     public ChessView(){
-        this.locationImages=new HashMap<>();
+
+        this.chessPieceImages =new HashMap<>();
         highLightedAreas=new ArrayList<>();
         boardPanel=new ChessBoardView();
         add(boardPanel);
         pack();
         setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
-    public void setMouseListener(MouseListener listener){
-        boardPanel.addMouseListener(listener);
+    @Override
+    public void setController(GameController controller){
+        boardPanel.addMouseListener(controller);
     }
 
-    public void setLocationImages(Map<Point, File> images){
-        this.locationImages=images;
+    public void setChessPieceImages(Map<Point, File> images){
+        this.chessPieceImages =images;
     }
 
-    public void setHighLightedAreas(List<Point> areas){
+
+    @Override
+    public void showPlayerOptions(List<Point> areas){
         highLightedAreas=areas;
     }
+
+    @Override
     public void update(){
         boardPanel.repaint();
     }
@@ -70,17 +75,18 @@ public class ChessView extends JFrame {
                     }
                 }
             }
-            System.out.println("draw");
+            System.out.println("repainting");
             graphics.setColor(Color.cyan);
             for(Point p : highLightedAreas){
                 graphics.fillRect(p.x*BLOCK_SIZE, p.y*BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-                System.out.println("hl");
             }
-            for(Map.Entry<Point, File> lImg : locationImages.entrySet()){
-                Point l = lImg.getKey();
+            for(Map.Entry<Point, File> locationImage : chessPieceImages.entrySet()){
+                Point l = locationImage.getKey();
+                if(l.y==3 ||l.y == 5)
+                    System.out.println("x = " + l.x + " y = " + l.y);
                 try {
                     graphics.drawImage(
-                            ImageIO.read(lImg.getValue()), l.x*BLOCK_SIZE, l.y*BLOCK_SIZE, 100, 100, null);
+                            ImageIO.read(locationImage.getValue()), l.x*BLOCK_SIZE+15, l.y*BLOCK_SIZE+15, 70, 70, null);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

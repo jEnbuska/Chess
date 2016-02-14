@@ -10,7 +10,6 @@ import org.junit.Test;
 import java.awt.*;
 
 import static java.lang.Math.abs;
-import static java.util.stream.Collectors.toList;
 
 /**
  * Created by joonaen on 12.2.2016.
@@ -34,6 +33,8 @@ public class KnightTest {
     public void testSafeMoves_BasicMovement() throws Exception {
 
         ChessPiece knight = team1.getKnights().get(1);
+        team1.setTurn(true);
+        team2.setTurn(false);
         knight.moveTo(p(3,3));
         String expected =
                         "********\n"+
@@ -48,10 +49,10 @@ public class KnightTest {
         String actual = ChessTestSuite.stringiFy(knight.getOptions());
         Assert.assertEquals(expected,actual);
 
-        for(ChessPiece member : team2.getMembers().collect(toList())){
+        for(ChessPiece member : team2.getMembers()){
             team1.remove(member);
         }
-        for(ChessPiece member : team1.getMembers().collect(toList())){
+        for(ChessPiece member : team1.getMembers()){
             team2.remove(member);
         }
         knight.moveTo(p(3,4));

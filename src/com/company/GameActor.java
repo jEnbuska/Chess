@@ -11,4 +11,5 @@ public interface GameActor {
     Stream<Point> getOptions();
     void moveTo(Point p);
     String getDescription();
+    boolean hasTurn();
 }

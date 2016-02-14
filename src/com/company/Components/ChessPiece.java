@@ -26,6 +26,7 @@ public abstract class ChessPiece implements GameActor {
         singleSteps.put(Direction.WEST, p -> p.translate(-1,0));       singleSteps.put(Direction.NORTH_WEST, p -> p.translate(-1,-1));
     }
 
+
     public ChessPiece(Point initialPosition, ChessTeam team, ChessBoard board){
         this.board=board;
         this.team=team;
@@ -34,21 +35,22 @@ public abstract class ChessPiece implements GameActor {
         hasMoved=false;
         /*Predicates*/
         this.isEmpty = p -> board.isEmpty(p);
-        this.hasFoe = p -> team.getOpponent().getMembers().anyMatch(foe -> foe.position.equals(p));
-        this.hasFriend = p -> team.getMembers().anyMatch(friend -> friend.position.equals(p));
+        this.hasFoe = p -> team.getOpponent().getMembers().stream().anyMatch(foe -> foe.position.equals(p));
+        this.hasFriend = p -> team.getMembers().stream().anyMatch(friend -> friend.position.equals(p));
         this.hasOpponentsKing = p -> team.getOpponent().getKing().position.equals(p);
+        //kingStaysSafe should only be called with positions that are on the grid and are enemy or occypyed by enemy
         this.kingStaysSafe = p -> {
             boolean check;
             board.clear(position);
-            ChessPiece placeHolder = board.get(p);
-            if(placeHolder!=null)
-                team.remove(placeHolder);
+            ChessPiece enemy = board.get(p);
+            if(enemy!=null)
+                team.remove(enemy);
             Point originalPosition = position;
             setPosition(p);
             check = !team.kingIsThreatened();
             setPosition(originalPosition);
-            if(placeHolder!=null)
-                placeHolder.setPosition(p);
+            if(enemy!=null)
+                enemy.setPosition(p);
             return check;
         };
     }
@@ -56,11 +58,23 @@ public abstract class ChessPiece implements GameActor {
     /*Template method*/
     @Override
     public final Stream<Point> getOptions() {
-        return getMovementRange().filter(location -> kingStaysSafe.or(hasOpponentsKing).test(location));
+        if(team.hasTurn()) {
+            return getMovementRange().filter(location -> kingStaysSafe.or(hasOpponentsKing).test(location));
+        }else{
+            return Stream.empty();
+        }
     }
+
+    @Override
+    public boolean hasTurn() {
+        return team.hasTurn();
+    }
+
     //moveTo should never be called inside from method 'getMovementRange' is same as setPosition but it is public and it does set hasMoved to true
     public final void moveTo(Point newPos){
+        System.out.println("has turn was " + hasTurn());
         hasMoved=true;
+        System.out.println("moving");
         setPosition(newPos);
     }
 
@@ -68,17 +82,21 @@ public abstract class ChessPiece implements GameActor {
         return position;
     }
 
-    //SetPosition is same as moveTo but it is protected and does not set hasMoved to true
+    //SetPosition is same as moveTo but it is protected and does not set hasMoved to true. Allso it removes any potential enemys from the position
     protected final void setPosition(Point newPos){
-        if(ChessBoard.validLocation(position))
+        if(ChessBoard.validLocation(position)) {
             board.clear(position);
-        if(ChessBoard.validLocation(newPos))
+        }
+        if(ChessBoard.validLocation(newPos)) {
+            if(hasFoe.test(newPos)){
+                team.remove(board.get(newPos));
+            }
             board.set(newPos, this);
+        }
         position=newPos;
     }
-
     /*getMovementRange does not have to care about teams kings safety.
-        DO NOT call methods 'safeMoves' or 'moveTo' (instead of moveTo use setPosition when you have to)
-        method inside from from getMovementRange*/
+            DO NOT call methods 'safeMoves' or 'moveTo' (instead of moveTo use setPosition when you have to)
+            method inside from from getMovementRange*/
     protected abstract Stream<Point> getMovementRange();
 }

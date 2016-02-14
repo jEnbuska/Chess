@@ -1,16 +1,23 @@
 package com.company;
 
+import java.util.Observable;
+
+import java.util.Set;
+
 /**
  * Created by joonaen on 8.2.2016.
  */
-public abstract class Game {
+public abstract class Game extends Observable {
 
     protected int playersCount;
-    protected Runnable latestPlayerAction;
+    protected Runnable latestPlayerAction = ()-> System.out.println("no action");
 
-    public void performGameAction(Runnable gameAction){
+    public synchronized void performGameAction(Runnable gameAction){
         latestPlayerAction=gameAction;
+        notify();
     }
+
+    public abstract Set<GameActor> getActors();
 
     abstract void initializeGame();
 
@@ -25,10 +32,12 @@ public abstract class Game {
         this.playersCount = playersCount;
         initializeGame();
         int j = 0;
-        while (!endOfGame()){
+        do{
             makePlay(j);
             j = (j + 1) % playersCount;
-        }
+            setChanged();
+            notifyObservers();
+        }while (!endOfGame());
         printWinner();
     }
 }

@@ -7,8 +7,6 @@ import org.junit.Test;
 import java.awt.*;
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
-
 /**
  * Created by joona on 10/02/2016.
  */
@@ -27,15 +25,17 @@ public class QueenTest {
         team1.setOpponent(team2);
         team2.setOpponent(team1);
         queen = team1.getQueen();
+        team1.setTurn(true);
+        team2.setTurn(false);
 
     }
 
     @org.junit.Test
     public void testPossibleMoves_EmptyBoard() throws Exception {
-        for(ChessPiece member : team2.getMembers().collect(toList())){
+        for(ChessPiece member : team2.getMembers()){
             team1.remove(member);
         }
-        for(ChessPiece member : team1.getMembers().collect(toList())){
+        for(ChessPiece member : team1.getMembers()){
             if(!(member instanceof Queen))
                 team2.remove(member);
         }
@@ -59,15 +59,17 @@ public class QueenTest {
 
     @Test
     public void testPossibleMoves_TwoFriendBlocking() throws Exception {
-        for(ChessPiece member : team2.getMembers().collect(toList())){
+        for(ChessPiece member : team2.getMembers()){
             team1.remove(member);
         }
-        for(ChessPiece member : team1.getMembers().collect(toList())){
+        for(ChessPiece member : team1.getMembers()){
             if(member instanceof Queen || member instanceof Rook)
                 continue;
             else
                 team2.remove(member);
         }
+        team1.setTurn(true);
+        team2.setTurn(false);
         team1.getQueen().moveTo(p(4,1));
         List<ChessPiece> rooks = team1.getRooks();
         rooks.get(0).moveTo(p(4,4));
@@ -87,13 +89,13 @@ public class QueenTest {
 
     @org.junit.Test
     public void testPossibleMoves_TwoFoesBlocking() throws Exception {
-        for(ChessPiece member : team2.getMembers().collect(toList())){
+        for(ChessPiece member : team2.getMembers()){
             if(member instanceof Rook)
                 continue;
             else
                 team1.remove(member);
         }
-        for(ChessPiece member : team1.getMembers().collect(toList())){
+        for(ChessPiece member : team1.getMembers()){
             if(member instanceof Queen)
                 continue;
             else
@@ -118,13 +120,13 @@ public class QueenTest {
 
     @Test
     public void testPossibleMoves_ProtectingKing() throws Exception {
-        for(ChessPiece member : team2.getMembers().collect(toList())){
+        for(ChessPiece member : team2.getMembers()){
             if(member instanceof Rook)
                 continue;
             else
                 team1.remove(member);
         }
-        for(ChessPiece member : team1.getMembers().collect(toList())){
+        for(ChessPiece member : team1.getMembers()){
             if(member instanceof Queen || member instanceof King)
                 continue;
             else
@@ -150,13 +152,13 @@ public class QueenTest {
 
     @org.junit.Test
     public void testPossibleMoves_CheckMate() throws Exception {
-        for(ChessPiece member : team2.getMembers().collect(toList())){
+        for(ChessPiece member : team2.getMembers()){
             if(member instanceof Rook)
                 continue;
             else
                 team1.remove(member);
         }
-        for(ChessPiece member : team1.getMembers().collect(toList())){
+        for(ChessPiece member : team1.getMembers()){
             if(member instanceof Queen || member instanceof King)
                 continue;
             else

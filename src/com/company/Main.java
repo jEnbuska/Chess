@@ -7,9 +7,10 @@ public class Main {
 
     public static void main(String[] args) {
         ChessView view = new ChessView();
-        GameController controller = new ChessController(view);
-        Game game = new Chess(controller);
-
-
+        Game game = new Chess();
+        game.initializeGame();
+        GameController controller = new ChessController(view, game);
+        game.addObserver(controller);
+        game.playOneGame(2);
     }
 }

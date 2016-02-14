@@ -18,6 +18,7 @@ public class King extends ChessPiece{
         isOneStepAway = p ->
                 (abs(p.x-position.x)<2 && abs(p.y-position.y)<2) &&
                         (abs(p.x-position.x) == 1 || abs(p.y-position.y) == 1);
+
     }
 
     @Override
@@ -26,7 +27,6 @@ public class King extends ChessPiece{
                 .filter(p -> isOneStepAway.test(p))
                 .filter(p -> isEmpty.or(hasFoe).test(p));
     }
-
     @Override
     public String getDescription() {
         return team.getDescription() + "king";

@@ -1,13 +1,15 @@
 package tests;
 
-import com.company.Components.*;
+import com.company.Components.ChessBoard;
+import com.company.Components.ChessPiece;
+import com.company.Components.ChessTeam;
+import com.company.Components.Direction;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.awt.*;
 
 import static java.lang.Math.abs;
-import static java.util.stream.Collectors.toList;
 
 /**
  * Created by WinNabuska on 11.2.2016.
@@ -31,6 +33,8 @@ public class RookTest {
     @Test
     public void testSafeMoves_BasicMovement() throws Exception {
 
+        team1.setTurn(true);
+        team2.setTurn(false);
         ChessPiece rook = team1.getRooks().get(1);
         rook.moveTo(p(3,3));
         String expected =
@@ -46,10 +50,10 @@ public class RookTest {
         String actual = ChessTestSuite.stringiFy(rook.getOptions());
         Assert.assertEquals(expected,actual);
 
-        for(ChessPiece member : team2.getMembers().collect(toList())){
+        for(ChessPiece member : team2.getMembers()){
             team1.remove(member);
         }
-        for(ChessPiece member : team1.getMembers().collect(toList())){
+        for(ChessPiece member : team1.getMembers()){
             team2.remove(member);
         }
         rook.moveTo(p(3,3));

@@ -27,6 +27,8 @@ public class SoldierTest {
         team2 = new ChessTeam(board, Direction.NORTH);
         team1.setOpponent(team2);
         team2.setOpponent(team1);
+        team1.setTurn(true);
+        team2.setTurn(false);
     }
 
     @Test

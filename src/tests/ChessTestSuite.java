@@ -60,9 +60,9 @@ public class ChessTestSuite {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 final int I = i, J = j;
-                if(team1.getMembers().anyMatch(m -> m.getPosition().x==J && m.getPosition().y==I)){
+                if(team1.getMembers().stream().anyMatch(m -> m.getPosition().x==J && m.getPosition().y==I)){
                     description+="#";
-                }else if(team2.getMembers().anyMatch(m -> m.getPosition().x==J && m.getPosition().y==I)){
+                }else if(team2.getMembers().stream().anyMatch(m -> m.getPosition().x==J && m.getPosition().y==I)){
                     description+="&";
                 }else{
                     description+="*";

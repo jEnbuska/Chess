@@ -2,21 +2,28 @@ package com.company;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Observer;
 import java.util.Set;
-import java.util.stream.Stream;
 
 /**
  * Created by WinNabuska on 12.2.2016.
  */
-public abstract class GameController extends MouseAdapter{
-    private Set<GameActor> currentActors;
+public abstract class GameController extends MouseAdapter implements Observer{
     private GameActor selectedActor;
-    public abstract void mouseClicked(MouseEvent e);
-    public void setActiveActors(Set<GameActor> actors){
-        this.currentActors=actors;
+    private Set<GameActor> actors;
+    private GameView2D view;
+    private Game game;
+
+    public GameController(GameView2D view, Game game){
+        this.actors = game.getActors();
+        this.view = view;
+        this.game = game;
     }
-    protected Stream<GameActor> currentActors(){
-        return currentActors.stream();
+    protected Set<GameActor> getActors(){
+        return actors;
+    }
+    protected GameView2D getView(){
+        return view;
     }
     protected GameActor getSelectedActor(){
         return selectedActor;
@@ -24,4 +31,12 @@ public abstract class GameController extends MouseAdapter{
     protected void setSelectedActor(GameActor actor){
         selectedActor=actor;
     }
+    protected Game getGame(){
+        if(game==null)
+            throw new Error("game null");
+        return game;
+    }
+    public abstract void mouseClicked(MouseEvent e);
+    protected abstract void onGameClose();
+
 }

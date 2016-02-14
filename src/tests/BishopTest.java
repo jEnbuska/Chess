@@ -10,7 +10,6 @@ import org.junit.Test;
 import java.awt.*;
 
 import static java.lang.Math.abs;
-import static java.util.stream.Collectors.toList;
 
 /**
  * Created by joonaen on 12.2.2016.
@@ -28,6 +27,8 @@ public class BishopTest {
         team2 = new ChessTeam(board, Direction.NORTH);
         team1.setOpponent(team2);
         team2.setOpponent(team1);
+        team1.setTurn(true);
+        team2.setTurn(false);
     }
 
     @Test
@@ -48,10 +49,10 @@ public class BishopTest {
         String actual = ChessTestSuite.stringiFy(bishop.getOptions());
         Assert.assertEquals(expected,actual);
 
-        for(ChessPiece member : team2.getMembers().collect(toList())){
+        for(ChessPiece member : team2.getMembers()){
             team1.remove(member);
         }
-        for(ChessPiece member : team1.getMembers().collect(toList())){
+        for(ChessPiece member : team1.getMembers()){
             team2.remove(member);
         }
         bishop.moveTo(p(3,3));
