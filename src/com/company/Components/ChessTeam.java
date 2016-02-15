@@ -28,13 +28,13 @@ public class ChessTeam {
             frontRow=6;
             queensColumn=3;
             kingColumn=4;
-            image_description="black_";
+            image_description="white_";
         } else if(HEADING == Direction.SOUTH){
             backRow=0;
             frontRow=1;
             queensColumn=4;
             kingColumn=3;
-            image_description="white_";
+            image_description="black_";
         } else{
             throw new Error("ChessTeam constructor should receive NORTH or SOUTH as its heading parameter");
         }
