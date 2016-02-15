@@ -26,21 +26,17 @@ public class ChessTeam {
         if(HEADING==Direction.NORTH){
             backRow=7;
             frontRow=6;
-            queensColumn=3;
-            kingColumn=4;
             image_description="white_";
         } else if(HEADING == Direction.SOUTH){
             backRow=0;
             frontRow=1;
-            queensColumn=4;
-            kingColumn=3;
             image_description="black_";
         } else{
             throw new Error("ChessTeam constructor should receive NORTH or SOUTH as its heading parameter");
         }
         members = new HashSet<>();
-        members.add(king = new King(ChessBoard.coord(kingColumn, backRow), this, board));
-        members.add(queen = new Queen(ChessBoard.coord(queensColumn, backRow), this, board));
+        members.add(king = new King(ChessBoard.coord(3, backRow), this, board));
+        members.add(queen = new Queen(ChessBoard.coord(4, backRow), this, board));
         rooks = Arrays.asList(
                 new Rook(ChessBoard.coord(0, backRow),this,board),
                 new Rook(ChessBoard.coord(7, backRow), this, board)
