@@ -22,7 +22,7 @@ public class ChessTeam {
         ourTurn=false;
         this.board=board;
         HEADING = heading;
-        int backRow, frontRow, queensColumn, kingColumn;
+        int backRow, frontRow;
         if(HEADING==Direction.NORTH){
             backRow=7;
             frontRow=6;
